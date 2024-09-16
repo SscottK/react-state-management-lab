@@ -78,18 +78,27 @@ const App = () => {
     },
   ]
   )
+
+  const handleAddFighter = (event) => {    
+    const fighter = {name: event.target.value}
+    setTeam([...team, fighter])
+    console.log(event.target.value)
+  }
   
   return ( 
     <div className="fighters">
-      <div><h3>Money: {money}</h3></div>  
+      <div><h3>Money: {money}</h3></div>
+      <div>Team: {team.map((member) => (
+        <p key={team.index}>{member}</p>
+      ))}</div>  
       <ul>
         {zombieFighters.map((zombieFighter) => (
-          <li><img src={zombieFighter.img} /><br/>
+          <li key={zombieFighter.name}><img src={zombieFighter.img} /><br/>
           Name: {zombieFighter.name}<br />
           Price: {zombieFighter.price}<br />
           Strength: {zombieFighter.strength}<br />
           Agility: {zombieFighter.agility}<br />
-          <button type="button">Add Zombie Fighter</button>
+          <button type="button" onClick={handleAddFighter}>Add</button>
           </li>        
         ))}
       </ul>
