@@ -79,17 +79,17 @@ const App = () => {
   ]
   )
 
-  const handleAddFighter = (event) => {    
-    const fighter = {name: event.target.value}
+  const handleAddFighter = (props) => {    
+    const fighter = props.zombieFighter
     setTeam([...team, fighter])
-    console.log(event.target.value)
+    console.log(props.zombieFighter)
   }
   
   return ( 
     <div className="fighters">
       <div><h3>Money: {money}</h3></div>
-      <div>Team: {team.map((member) => (
-        <p key={team.index}>{member}</p>
+      <div>Team: {team.map((member, index) => (
+        <p key={index}>{member}</p>
       ))}</div>  
       <ul>
         {zombieFighters.map((zombieFighter) => (
@@ -98,7 +98,7 @@ const App = () => {
           Price: {zombieFighter.price}<br />
           Strength: {zombieFighter.strength}<br />
           Agility: {zombieFighter.agility}<br />
-          <button type="button" onClick={handleAddFighter}>Add</button>
+          <button type="button" onClick={handleAddFighter} zombiefighter={zombieFighter}>Add</button>
           </li>        
         ))}
       </ul>
