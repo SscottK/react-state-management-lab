@@ -94,12 +94,13 @@ const App = () => {
     }
   }
 
-  const handleRemoveFighter = (zombieFighterToRemove) => {
-    setTeam(team.filter((fighter) => fighter.name !== zombieFighterToRemove.name))
+  const handleRemoveFighter = (zombieFighterToRemove, fighterIndex) => {
+    setTeam(team.filter((fighter, index) => fighterIndex !== index))
     setMoney(money + zombieFighterToRemove.price)
     setTotalAgility(totalAgility - zombieFighterToRemove.agility)
     setTotalStrength(totalStrength - zombieFighterToRemove.strength)
-    console.log(zombieFighter)
+    setMessage('')
+    
   }
     
   
@@ -135,7 +136,7 @@ const App = () => {
             Price: {zombieFighter.price}<br />
             Strength: {zombieFighter.strength}<br />
             Agility: {zombieFighter.agility}<br />            
-            <button onClick={() => handleRemoveFighter(zombieFighter)}>Remove</button>
+            <button onClick={() => handleRemoveFighter(zombieFighter, index)}>Remove</button>
           </li>        
         ))}
       </ul>
